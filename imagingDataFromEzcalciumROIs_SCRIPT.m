@@ -1,7 +1,7 @@
 % works? not yet - need to properly collect ROI info from ezcaFile
 
-clear all
-close all
+% clear all
+% close all
 
 %% USER INPUT
 

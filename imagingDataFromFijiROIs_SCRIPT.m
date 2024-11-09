@@ -1,23 +1,23 @@
-% works? yes
-% TO DO: 
+%{ 
+DOCUMENTATION
+Created: 2024 10 ??
+Last edited on: 2024 11 09
+Works? Yes
+Author: PA
 
-clear all
-close all
+!! search for ALERT and ASSUMPTION to read important info
 
-%% ScanImage stuff - images (still need to troubleshoot)
+DEPENDS on:
+From others > ReadImageJROI
+    https://www.mathworks.com/matlabcentral/fileexchange/32479-readimagejroi
 
-% https://vidriotech.gitlab.io/scanimagetiffreader-matlab/
-% Weird things I had to do to make this shit work: open every .mexmaca64 file in the folder
-% ".../GitHub/PA_ScanImageAnalysis/si-tiff-reader-arm/+ScanImageTiffReader/private"
-% to let Apple know that it is safe to run this code
+TO DO: 
+Explain user inputs
+Automate generation of max int projection instead of providing file dir
+%}
 
-% import ScanImageTiffReader.ScanImageTiffReader;
-% reader=ScanImageTiffReader('/Users/priscilla/Documents/Local - Moss Lab/ACC/20241101/test2/m0031_00001.tif');
-% vol=reader.data();
-% imshow(vol(:,:,floor(size(vol,3)/2)),[]);
-% meta=reader.metadata();
-% desc=reader.descriptions();
-% disp(meta(1:1000));
+% clear all
+% close all
 
 
 %% USER INPUT
@@ -42,6 +42,7 @@ roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/ACC/2024_10_29 (1) - c
 motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
 
+
 % inputs for other datasets (may be outdated!):
 
 % % m0031 test 2
@@ -63,6 +64,22 @@ plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to s
 % plotSubset = 1;
 % firstFig = 1;
 % lastFig = 30;
+
+
+%% ScanImage stuff - images (WIP, still need to troubleshoot)
+
+% https://vidriotech.gitlab.io/scanimagetiffreader-matlab/
+% Weird things I had to do to make this shit work: open every .mexmaca64 file in the folder
+% ".../GitHub/PA_ScanImageAnalysis/si-tiff-reader-arm/+ScanImageTiffReader/private"
+% to let Apple know that it is safe to run this code
+
+% import ScanImageTiffReader.ScanImageTiffReader;
+% reader=ScanImageTiffReader('/Users/priscilla/Documents/Local - Moss Lab/ACC/20241101/test2/m0031_00001.tif');
+% vol=reader.data();
+% imshow(vol(:,:,floor(size(vol,3)/2)),[]);
+% meta=reader.metadata();
+% desc=reader.descriptions();
+% disp(meta(1:1000));
 
 
 %% Pre-processing
@@ -166,10 +183,7 @@ end
 
 %% Fiji ROIs stuff
 
-% TO DO: 
-% - add max number of imgs to analyze to remove problematic files from end
-% - add imgRegistration code to adjust ROI position from file to file
-
+% meanInt = mean intensity
 meanIntPerRoi = [];
 
 for file = 1:numberOfImgs
@@ -222,8 +236,13 @@ imagingTotalDataPts=numberOfFrames;
 imagingSampleRate=imagingTotalDataPts/imagingDurInSec;
 xAxisInSec=linspace(0,imagingDurInSec,imagingTotalDataPts);
 
-% %% CALCULATE dF/F and z-scores in ROIs - delete last instance
-% 
+
+%% CALCULATE dF/F and z-scores in ROIs
+
+% ALERT: some files run fine as is, some need an extra step: "delete last
+% instance". Comment/uncomment to switch between modes:
+
+% % delete last instance
 % % dF/F = (F - F in first frame) / F in first frame
 % fns = fieldnames(s);
 % dFPerFile=[];
@@ -245,9 +264,7 @@ xAxisInSec=linspace(0,imagingDurInSec,imagingTotalDataPts);
 %     s_zS.(fns{file})=zScorePerFile(1:end-1,:);
 % end
 
-
-%% CALCULATE dF/F and z-scores in ROIs - do NOT delete last instance
-
+% do NOT delete last instance
 % dF/F = (F - F in first frame) / F in first frame
 fns = fieldnames(s);
 dFPerFile=[];
@@ -329,6 +346,7 @@ end
 hold(ax2,'off');
 
 % ROIs over max int proj of last img
+% ALERT: I am not adjusting the position of this fig!
 if exist('lastMaxIntProjFileDir','var')
     fig3 = figure('Name','ROIs over last max int proj');
     ax3 = axes('Parent',fig3);
@@ -346,24 +364,6 @@ if exist('lastMaxIntProjFileDir','var')
     end
     hold(ax3,'off');
 end
-
-% % % ROIs over last frame of last img
-% % fig2 = figure('Name','ROIs over last frame of last img');
-% % ax2 = axes('Parent',fig2);
-% % imshow(imgToAnalyze,'Parent',ax2);
-% % hold on;
-% % thetas = linspace(0,2*pi,200);
-% % for roiNumber=1:length(rois)
-% % % for roiNumber=[1 2 3 5 6 8 11 12 13 14]
-% %     ellipseR1 = (rois{roiNumber}.vnRectBounds(4) - rois{roiNumber}.vnRectBounds(2))/2;
-% %     ellipseR2 = (rois{roiNumber}.vnRectBounds(3) - rois{roiNumber}.vnRectBounds(1))/2;
-% %     ellipseA = (rois{roiNumber}.vnRectBounds(4) + rois{roiNumber}.vnRectBounds(2))/2;
-% %     ellipseB = (rois{roiNumber}.vnRectBounds(3) + rois{roiNumber}.vnRectBounds(1))/2;
-% %     ellipseX = ellipseR1*cos(thetas)+ellipseA;
-% %     ellipseY = ellipseR2*sin(thetas)+ellipseB; 
-% %     plot(ellipseX,ellipseY,'Parent',ax2)
-% % end
-% % hold off;
 
 % % plot ROIs as colorful blobs
 % labeledRois = labelmatrix(regions);
@@ -426,7 +426,7 @@ for roi=1:totalNumberOfRois
 end
     
 
-%% ARCHIVE
+%% ARCHIVE - outdated code I'm hoarding
 
 % for roiNumber = 1:length(rois)
 %     labeledRoi = labelmatrix(regions) == roiNumber;

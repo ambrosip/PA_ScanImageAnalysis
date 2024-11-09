@@ -1,5 +1,6 @@
 % align first and last max intensity projection
 
+
 %% USER INPUT
 
 firstMaxIntProjFileDir='/Users/priscilla/Documents/Local - Moss Lab/ACC/20241101/test2/MAX_m0031_00001_mcor.tif'; 
