@@ -36,18 +36,17 @@ optimizer.MaximumIterations = 10000;              % 100       500   10000
 optimizer.RelaxationFactor = 0.5;               % 0.5       0.7     0.7
 
 analyzeOdorPulse = 0;
-xmax = 60; % seconds
+xmax = 60*30; % seconds
 ymax = 2; % z-score
 
-% gcamp8 a20250106_m0041_00017_mcor
-timingFile='/Users/priscilla/Documents/Local - Moss Lab/20250106/20250106_m0041_00011.h5';
-imgDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/mcor';
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/STD_20250106_m0041_00013_mcor.tif'; 
-lastMaxIntProjFileDir = firstMaxIntProjFileDir;
-roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/AVG_20250106_m0041_00013_mcor_roi.zip';
-motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% gcamp8 a20250303_m0041_00105_mcor and a20250303_m0041_00204_mcor
+timingFile=h5_file_dir;
+imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1 test';
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00105_mcor.tif'; 
+lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00204_mcor.tif';
+roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/RoiSet_glom_acq105.zip';
+motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
-
 
 
 % inputs for other datasets (may be outdated!):
@@ -280,11 +279,8 @@ end
 
 %% xAxis from data pts to time (s)
 
-% ASSUMPTION: all img files have the same numberOfFrames (I am using
-% numberOfFrames from last file to calculate the xAxis for every img file)
-imagingTotalDataPts=numberOfFrames;
-imagingSampleRate=imagingTotalDataPts/imagingDurInSec;
-xAxisInSec=linspace(0,imagingDurInSec,imagingTotalDataPts);
+% ASSUMPTION: all img files have the same numberOfFrames
+xAxisInSec=x_minutes*60;
 
 
 %% CALCULATE dF/F and z-scores in ROIs

@@ -36,18 +36,17 @@ optimizer.MaximumIterations = 10000;              % 100       500   10000
 optimizer.RelaxationFactor = 0.5;               % 0.5       0.7     0.7
 
 analyzeOdorPulse = 0;
-xmax = 60; % seconds
+xmax = 60*30; % seconds
 ymax = 2; % z-score
 
-% gcamp8 a20250106_m0041_00017_mcor
-timingFile='/Users/priscilla/Documents/Local - Moss Lab/20250106/20250106_m0041_00011.h5';
-imgDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/mcor';
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/STD_20250106_m0041_00013_mcor.tif'; 
-lastMaxIntProjFileDir = firstMaxIntProjFileDir;
-roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250106/analyzed/AVG_20250106_m0041_00013_mcor_roi.zip';
-motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% gcamp8 a20250303_m0041_00105_mcor and a20250303_m0041_00204_mcor
+timingFile=h5_file_dir;
+imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1 test';
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00105_mcor.tif'; 
+lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00204_mcor.tif';
+roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/RoiSet_glom_acq105.zip';
+motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
-
 
 
 % inputs for other datasets (may be outdated!):
@@ -147,42 +146,9 @@ totalNumberOfRois = length(rois);
 
 %% Get timing info from TTLs
 
-sampleRate=h5readatt(timingFile,'/','samplerate');
-imagingWindow=h5read(timingFile,'/ImagingWindow');
-odorDelivery=h5read(timingFile,'/OdorDelivery');
-
-% ASSUMPTION: all imaging windows are the same duration
-% this code works for a TTL pulse from 0 to 5 V
-imagingStart=find(diff(imagingWindow>1)>0);
-imagingEnd=find(diff(imagingWindow<1)>0); 
-if ~isempty(imagingEnd) % to avoid problems in case scanimage stops the scan before the end of the imaging pulse
-    if imagingEnd(1) < imagingStart(1)  % to avoid problems in case you start the olfactometer before the scanImage Loop
-        imagingEnd=imagingEnd(2:end);
-        imagingStart=imagingStart(1:end-1);
-    end
-else
-    imagingEnd=length(imagingWindow);
-end
-imagingDurInPts=imagingEnd(1)-imagingStart(1);  % in data points
-imagingDurInSec=imagingDurInPts/sampleRate;     % in seconds
-
 if analyzeOdorPulse == 1
-    % ASSUMPTION: all odor deliveries are the same duration
-    % this code works for a TTL pulse on steroids, from 0 to 20 V, with slow
-    % decay. To accomodate these weird parameters, I had to (1) filter the
-    % data and (2) set a higher threshold for finding the pulse, 8/10 of the range
-    % smooth data with moving average filter
-    % ALERT: this code is not working properly - it is detecting more than 1
-    % odorStart per odor pulse in some instances
-    odorDeliverySmoothed = smooth(odorDelivery,10);
-    odorPulseThreshold=(max(odorDeliverySmoothed)-min(odorDeliverySmoothed))*8/10;
-    odorStart=find(diff(odorDeliverySmoothed>odorPulseThreshold)>0);
-    odorEnd=find(diff(odorDeliverySmoothed<odorPulseThreshold)>0);  
-    odorDurInPts=odorEnd(1)-odorStart(1);          % in data points
-    odorDurInSec=odorDurInPts/sampleRate;          % in seconds
-
-    % how long is the imaging window before odor pulse?
-    baselineWindowInSec = (odorStart(1)-imagingStart(1))/sampleRate;
+    odorDurInSec=odor_dur_in_s;
+    baselineWindowInSec = baseline_dur_in_s;
 end
 
 
@@ -280,11 +246,8 @@ end
 
 %% xAxis from data pts to time (s)
 
-% ASSUMPTION: all img files have the same numberOfFrames (I am using
-% numberOfFrames from last file to calculate the xAxis for every img file)
-imagingTotalDataPts=numberOfFrames;
-imagingSampleRate=imagingTotalDataPts/imagingDurInSec;
-xAxisInSec=linspace(0,imagingDurInSec,imagingTotalDataPts);
+% ASSUMPTION: all img files have the same numberOfFrames
+xAxisInSec=x_minutes*60;
 
 
 %% CALCULATE dF/F and z-scores in ROIs
