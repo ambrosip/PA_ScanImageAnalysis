@@ -229,4 +229,3 @@ odor_dur_in_s = mean((odor_end_locs - odor_locs)*60);
 odor_dur_in_frames = odor_dur_in_s * frame_rate_hz;
 
 
-

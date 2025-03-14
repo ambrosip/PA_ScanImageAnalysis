@@ -35,21 +35,48 @@ optimizer.MaximumStepLength = 1;             % 0.0625    0.06       1
 optimizer.MaximumIterations = 10000;              % 100       500   10000
 optimizer.RelaxationFactor = 0.5;               % 0.5       0.7     0.7
 
-analyzeOdorPulse = 0;
-xmax = 60*30; % seconds
-ymax = 2; % z-score
+analyzeOdorPulse = 1;
+xmax = ceil(img_dur_in_s); % seconds
+ymax = 10; % z-score
 
-% gcamp8 a20250303_m0041_00105_mcor and a20250303_m0041_00204_mcor
+% gcamp8 odor1 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
 timingFile=h5_file_dir;
-imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1 test';
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00105_mcor.tif'; 
-lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/STD_20250303_m0041_00204_mcor.tif';
-roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/RoiSet_glom_acq105.zip';
-motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
+imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1';
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
+lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
+roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_glom_acq105.zip';
+motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
 
 
 % inputs for other datasets (may be outdated!):
+
+% % gcamp8 odor2 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
+% timingFile=h5_file_dir;
+% imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 2';
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_glom_acq105.zip';
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+
+% % gcamp8 odor2 somas a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
+% timingFile=h5_file_dir;
+% imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 2';
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_somas_acq105.zip';
+% motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+
+% % gcamp8 odor1 somas a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
+% timingFile=h5_file_dir;
+% imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1';
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_somas_acq105.zip';
+% motionCorrectionAcrossFiles = 1;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
 
 % % gcamp8 a20250106_m0041_00017_mcor
 % timingFile='/Users/priscilla/Documents/Local - Moss Lab/20250106/20250106_m0041_00011.h5';
@@ -182,7 +209,7 @@ if motionCorrectionAcrossFiles == 1
         tform = imregtform(nextImg, firstImg, 'translation', optimizer, metric);
         tformPerImg{file} = tform.Translation;
 
-        % comment these out for speed; run for quality control
+        % % comment these out for speed; run for quality control
         % align images based on registration transformation
         % figure;
         % nextImgRegistered = imwarp(nextImg,tform,'OutputView',imref2d(size(firstImg)));
@@ -247,7 +274,9 @@ end
 %% xAxis from data pts to time (s)
 
 % ASSUMPTION: all img files have the same numberOfFrames
-xAxisInSec=x_minutes*60;
+imagingTotalDataPts=numberOfFrames;
+imagingSampleRate=imagingTotalDataPts/img_dur_in_s;
+xAxisInSec=linspace(0,img_dur_in_s,imagingTotalDataPts);
 
 
 %% CALCULATE dF/F and z-scores in ROIs
@@ -290,13 +319,25 @@ for file=1:numberOfImgs
 end
 
 % z-score = (dF/F - mean(dF/F)) / sd(dF/F)
-fns = fieldnames(s);
+fns = fieldnames(s_dF);
 zScorePerFile=[];
 for file=1:numberOfImgs
+    dFPerFile = s_dF.(fns{file});
     for roi=1:totalNumberOfRois
-        zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi))) / std(dFPerFile(:,roi));
+        zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi),'omitnan')) / std(dFPerFile(:,roi),'omitnan');
     end
     s_zS.(fns{file})=zScorePerFile(1:end,:);
+end
+
+% mean z-score in ROI across files
+fns = fieldnames(s_zS);
+zScorePerFile=[];
+for roi=1:totalNumberOfRois
+    zSPerROI = [];
+    for file=1:numberOfImgs 
+        zScorePerFile(:,file) = s_zS.(fns{file})(:,roi);
+    end
+    mean_zS_PerROI(:,roi) = mean(zScorePerFile,2,'omitnan');
 end
 
 
@@ -403,30 +444,10 @@ end
 firstFigName = fns{firstFig};
 lastFigName = fns{lastFig};
 
-% % dF/F
-% for roi=1:totalNumberOfRois
-% % for roi=[1 2 3 5 6 8 11 12 13 14]
-%     figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_dFoverF'))
-%     hold on;
-%     for file=firstFig:lastFig
-%     % for file=1:numberOfImgs
-%         plot(xAxisInSec',s_dF.(fns{file})(:,roi));
-%         if analyzeOdorPulse == 1
-%             xline(baselineWindowInSec);
-%             xline(baselineWindowInSec+odorDurInSec);
-%         end
-%     end
-%     hold off;
-%     axis([0 xmax -0.5 ymax])
-%     xlabel('Time (s)')
-%     ylabel('dF/F')
-% end
-
-% z-score
+% dF/F
 for roi=1:totalNumberOfRois
 % for roi=[1 2 3 5 6 8 11 12 13 14]
-% for roi=4
-    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_zScore'))
+    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_dF'))
     hold on;
     for file=firstFig:lastFig
     % for file=1:numberOfImgs
@@ -437,7 +458,26 @@ for roi=1:totalNumberOfRois
         end
     end
     hold off;
-    axis([0 xmax -1 ymax])
+    axis([0 xmax -5 ymax])
+    xlabel('Time (s)')
+    ylabel('dF/F')
+end
+
+% z-score
+for roi=1:totalNumberOfRois
+% for roi=[1 2 4]
+    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_zScore'))
+    hold on;
+    for file=firstFig:lastFig
+        plot(xAxisInSec',s_zS.(fns{file})(:,roi));
+        if analyzeOdorPulse == 1
+            xline(baseline_dur_in_s);
+            xline(baseline_dur_in_s+odor_dur_in_s);
+        end
+    end
+    plot(xAxisInSec',mean_zS_PerROI(:,roi),'Color','k','LineWidth',1)
+    hold off;
+    axis([0 xmax -5 ymax])
     xlabel('Time (s)')
     ylabel('z-score')
 end
