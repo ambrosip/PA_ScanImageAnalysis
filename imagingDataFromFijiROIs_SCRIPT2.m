@@ -39,17 +39,28 @@ analyzeOdorPulse = 1;
 xmax = ceil(img_dur_in_s); % seconds
 ymax = 10; % z-score
 
-% gcamp8 odor1 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
+% grabda odor1 glom a20250321_m0043_00001_mcor to a20250321_m0043_00061_mcor
 timingFile=h5_file_dir;
-imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1';
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
-lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
-roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_glom_acq105.zip';
+imgDir=destination_dir1;
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_roi-flatten.tif'; 
+lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001.tif';
+roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_rois.zip';
 motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
 
 
 % inputs for other datasets (may be outdated!):
+
+
+% % gcamp8 odor1 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
+% timingFile=h5_file_dir;
+% imgDir='/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/odor 1';
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00105_mcor.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/STD_20250303_m0041_00204_mcor.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_glom_acq105.zip';
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+
 
 % % gcamp8 odor2 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
 % timingFile=h5_file_dir;

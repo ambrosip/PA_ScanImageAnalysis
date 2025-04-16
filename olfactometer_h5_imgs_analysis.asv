@@ -229,9 +229,8 @@ set(fig3, 'Position', [0 0 1000 100])    % x y width height
 % test if you missed the first trial peak, causing the size of odor_locs to
 % be larger than the size of trial_locs
 if size(trial_locs,1) < size(odor_locs,1)
-    % drop off the first odor_locs and the first odor_end_locs
+    % drop off the first odor_locs
     odor_locs = odor_locs(2:end);
-    odor_end_locs = odor_end_locs(2:end);
 end
 baseline_dur_in_s = mean((odor_locs - trial_locs)*60);
 img_dur_in_s = frames_per_img / frame_rate_hz;
