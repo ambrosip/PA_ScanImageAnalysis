@@ -39,18 +39,115 @@ analyzeOdorPulse = 1;
 xmax = ceil(img_dur_in_s); % seconds
 ymax = 10; % z-score
 
-% grabda odor1 glom a20250321_m0043_00001_mcor to a20250321_m0043_00061_mcor
-timingFile=h5_file_dir;
-imgDir=destination_dir1;
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_roi-flatten.tif'; 
-lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001.tif';
-roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_rois.zip';
+% dlight odor1&2 glom 20250305_m0034_00021_mcor
+timingFile = h5_file_dir;
+% imgDir = destination_dir1;
+imgDir = destination_dir2;
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor_flatten.tif'; 
+lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor.tif';
+roiFileDir = roi_file_dir;
 motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
-
+photobleachingWindowInSec = 1;
 
 % inputs for other datasets (may be outdated!):
 
+% % grabda odor1 glom a20250321_m0043_00063+
+% timingFile=h5_file_dir;
+% % imgDir=destination_dir1;
+% imgDir=destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321_m0043_grabgda/odor delivery 2 (63+)/extra/AVG_a20250321_m0043_00063_mcor_avg_flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321_m0043_grabgda/odor delivery 2 (63+)/extra/AVG_a20250321_m0043_00063_mcor_avg.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 3;
+
+% % grabda odor1 glom a20250321_m0043_00063+
+% timingFile=h5_file_dir;
+% % imgDir=destination_dir1;
+% imgDir=destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321_m0043_grabgda/odor delivery 1 (1 to 62)/extra/AVG_20250321_m0043_00001_roi-flatten2.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321_m0043_grabgda/odor delivery 1 (1 to 62)/extra/AVG_20250321_m0043_00001_roi.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 3;
+
+% % gcamp8f odor1&2 glom 20250303_m0041_00105_mcor
+% timingFile = h5_file_dir;
+% % imgDir = destination_dir1;
+% imgDir = destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/105+/extra/AVG_20250303_m0041_00105_mcor_flat.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/105+/extra/AVG_20250303_m0041_00105_mcor.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 1;
+
+% % gcamp8f odor1&2 glom a20250303_m0041_00003_mcor
+% timingFile = h5_file_dir;
+% % imgDir = destination_dir1;
+% imgDir = destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/3+/extra/AVG_20250303_m0041_00102_mcor_flat.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/3+/extra/AVG_20250303_m0041_00102_mcor.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 1;
+
+% % dlight odor1&2 glom 20250305_m0034_00021_mcor
+% timingFile = h5_file_dir;
+% % imgDir = destination_dir1;
+% imgDir = destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor_flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 1;
+
+% % dlight odor1&2 glom 20250305_m0034_00001_mcor
+% timingFile = h5_file_dir;
+% % imgDir = destination_dir1;
+% imgDir = destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034/exp1 (1+)/extra/AVG_20250305_m0034_00010_mcor_avg_flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034/exp1 (1+)/extra/AVG_20250305_m0034_00010_mcor_avg.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 1;
+
+% % grabda odor1 glom a20250321_m0043_00063+
+% timingFile=h5_file_dir;
+% imgDir=destination_dir2;
+% % imgDir=destination_dir1;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_a20250321_m0043_00063_mcor_avg_flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_a20250321_m0043_00063_mcor_avg.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/odor delivery 2 (63+)/a20250321_m0043_00063_mcor_rois.zip';
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 3;
+
+% % grabda odor2 glom a20250321_m0043_00001+
+% timingFile=h5_file_dir;
+% imgDir=destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_roi-flatten.tif';
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_rois.zip';
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 3;
+
+% % grabda odor1 glom a20250321_m0043_00001_mcor to a20250321_m0043_00061_mcor
+% timingFile=h5_file_dir;
+% imgDir=destination_dir1;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_roi-flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001.tif';
+% roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250321 partial/AVG_20250321_m0043_00001_rois.zip';
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 3;
 
 % % gcamp8 odor1 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
 % timingFile=h5_file_dir;
@@ -60,7 +157,6 @@ plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to s
 % roiFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250303_m0041/odor delivery 2 (105 to 204)/fiji/RoiSet_glom_acq105.zip';
 % motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
 % plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
-
 
 % % gcamp8 odor2 glom a20250303_m0041_00105_mcor to a20250303_m0041_00204_mcor
 % timingFile=h5_file_dir;
@@ -144,22 +240,6 @@ plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to s
 % plotSubset = 1;
 % firstFig = 1;
 % lastFig = 30;
-
-
-%% ScanImage stuff - images (WIP, still need to troubleshoot)
-
-% https://vidriotech.gitlab.io/scanimagetiffreader-matlab/
-% Weird things I had to do to make this shit work: open every .mexmaca64 file in the folder
-% ".../GitHub/PA_ScanImageAnalysis/si-tiff-reader-arm/+ScanImageTiffReader/private"
-% to let Apple know that it is safe to run this code
-
-% import ScanImageTiffReader.ScanImageTiffReader;
-% reader=ScanImageTiffReader('/Users/priscilla/Documents/Local - Moss Lab/ACC/20241101/test2/m0031_00001.tif');
-% vol=reader.data();
-% imshow(vol(:,:,floor(size(vol,3)/2)),[]);
-% meta=reader.metadata();
-% desc=reader.descriptions();
-% disp(meta(1:1000));
 
 
 %% Pre-processing
@@ -290,52 +370,108 @@ imagingSampleRate=imagingTotalDataPts/img_dur_in_s;
 xAxisInSec=linspace(0,img_dur_in_s,imagingTotalDataPts);
 
 
-%% CALCULATE dF/F and z-scores in ROIs
+% % %% CALCULATE dF/F and z-scores in ROIs (old, 1st frame only, not accounting for photobleaching)
+% % 
+% % % ALERT: some files run fine as is, some need an extra step: "delete last
+% % % instance". Comment/uncomment to switch between modes:
+% % 
+% % % % delete last instance
+% % % % dF/F = (F - F in first frame) / F in first frame
+% % % fns = fieldnames(s);
+% % % dFPerFile=[];
+% % % for file=1:numberOfImgs
+% % %     fPerFile = s.(fns{file});
+% % %     for roi=1:totalNumberOfRois
+% % %         dFPerFile(:,roi) = (fPerFile(:,roi) - fPerFile(1,roi)) / fPerFile(1,roi);
+% % %     end
+% % %     s_dF.(fns{file})=dFPerFile(1:end-1,:);
+% % % end
+% % % 
+% % % % z-score = (dF/F - mean(dF/F)) / sd(dF/F)
+% % % fns = fieldnames(s);
+% % % zScorePerFile=[];
+% % % for file=1:numberOfImgs
+% % %     for roi=1:totalNumberOfRois
+% % %         zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi))) / std(dFPerFile(:,roi));
+% % %     end
+% % %     s_zS.(fns{file})=zScorePerFile(1:end-1,:);
+% % % end
+% % 
+% % % do NOT delete last instance
+% % % dF/F = (F - F in first frame) / F in first frame
+% % fns = fieldnames(s);
+% % dFPerFile=[];
+% % for file=1:numberOfImgs
+% %     fPerFile = s.(fns{file});
+% %     for roi=1:totalNumberOfRois
+% %         dFPerFile(:,roi) = (fPerFile(:,roi) - fPerFile(1,roi)) / fPerFile(1,roi);
+% %     end
+% %     s_dF.(fns{file})=dFPerFile(1:end,:);
+% % end
+% % 
+% % % z-score = (dF/F - mean(dF/F)) / sd(dF/F)
+% % fns = fieldnames(s_dF);
+% % zScorePerFile=[];
+% % for file=1:numberOfImgs
+% %     dFPerFile = s_dF.(fns{file});
+% %     for roi=1:totalNumberOfRois
+% %         zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi),'omitnan')) / std(dFPerFile(:,roi),'omitnan');
+% %     end
+% %     s_zS.(fns{file})=zScorePerFile(1:end,:);
+% % end
+% % 
+% % % mean z-score in ROI across files
+% % fns = fieldnames(s_zS);
+% % zScorePerFile=[];
+% % for roi=1:totalNumberOfRois
+% %     zSPerROI = [];
+% %     for file=1:numberOfImgs 
+% %         zScorePerFile(:,file) = s_zS.(fns{file})(:,roi);
+% %     end
+% %     mean_zS_PerROI(:,roi) = mean(zScorePerFile,2,'omitnan');
+% % end
 
-% ALERT: some files run fine as is, some need an extra step: "delete last
-% instance". Comment/uncomment to switch between modes:
 
-% % delete last instance
-% % dF/F = (F - F in first frame) / F in first frame
-% fns = fieldnames(s);
-% dFPerFile=[];
-% for file=1:numberOfImgs
-%     fPerFile = s.(fns{file});
-%     for roi=1:totalNumberOfRois
-%         dFPerFile(:,roi) = (fPerFile(:,roi) - fPerFile(1,roi)) / fPerFile(1,roi);
-%     end
-%     s_dF.(fns{file})=dFPerFile(1:end-1,:);
-% end
-% 
-% % z-score = (dF/F - mean(dF/F)) / sd(dF/F)
-% fns = fieldnames(s);
-% zScorePerFile=[];
-% for file=1:numberOfImgs
-%     for roi=1:totalNumberOfRois
-%         zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi))) / std(dFPerFile(:,roi));
-%     end
-%     s_zS.(fns{file})=zScorePerFile(1:end-1,:);
-% end
+%% CALCULATE dF/F and z-scores in ROIs 
 
 % do NOT delete last instance
-% dF/F = (F - F in first frame) / F in first frame
+% dF/F = (F - mean F in baseline) / mean F in baseline
 fns = fieldnames(s);
 dFPerFile=[];
 for file=1:numberOfImgs
     fPerFile = s.(fns{file});
+    % check if we need to delete the first few seconds of the data because of photobleaching
+    if exist('photobleachingWindowInSec')
+        photobleachingWindowInFrames = photobleachingWindowInSec * imagingSampleRate;
+        fPerFile = fPerFile(photobleachingWindowInFrames:end,:);
+        adjustedBaselineInSec = baseline_dur_in_s - photobleachingWindowInSec;
+        adjustedBaselineInFrames = adjustedBaselineInSec * imagingSampleRate;
+    else
+        adjustedBaselineInFrames = baseline_dur_in_s * imagingSampleRate;
+    end
     for roi=1:totalNumberOfRois
-        dFPerFile(:,roi) = (fPerFile(:,roi) - fPerFile(1,roi)) / fPerFile(1,roi);
+        meanBaselineF = mean(fPerFile(1:adjustedBaselineInFrames,roi),'omitnan');
+        dFPerFile(:,roi) = (fPerFile(:,roi) - meanBaselineF) / meanBaselineF;
     end
     s_dF.(fns{file})=dFPerFile(1:end,:);
 end
 
-% z-score = (dF/F - mean(dF/F)) / sd(dF/F)
+% adjust X axis if you removed the photobleaching window
+if exist('photobleachingWindowInSec')
+    imagingTotalDataPts = size(dFPerFile,1);
+    img_dur_in_s = imagingTotalDataPts / imagingSampleRate;
+    xAxisInSec = linspace(0,img_dur_in_s,imagingTotalDataPts);
+end
+
+% z-score = (dF/F - mean(dF/F) in baseline) / sd(dF/F) in baseline
 fns = fieldnames(s_dF);
 zScorePerFile=[];
 for file=1:numberOfImgs
     dFPerFile = s_dF.(fns{file});
     for roi=1:totalNumberOfRois
-        zScorePerFile(:,roi) = (dFPerFile(:,roi) - mean(dFPerFile(:,roi),'omitnan')) / std(dFPerFile(:,roi),'omitnan');
+        meanBaseline_dF = mean(dFPerFile(1:adjustedBaselineInFrames,roi),'omitnan');
+        sdBaseline_dF = std(dFPerFile(1:adjustedBaselineInFrames,roi),'omitnan');
+        zScorePerFile(:,roi) = (dFPerFile(:,roi) - meanBaseline_dF) / sdBaseline_dF;
     end
     s_zS.(fns{file})=zScorePerFile(1:end,:);
 end
@@ -349,6 +485,56 @@ for roi=1:totalNumberOfRois
         zScorePerFile(:,file) = s_zS.(fns{file})(:,roi);
     end
     mean_zS_PerROI(:,roi) = mean(zScorePerFile,2,'omitnan');
+end
+
+
+%% PLOT data in ROIs
+
+% set default firstFig and lastFig boundaries in case user does NOT want a
+% custom subset
+if plotSubset == 0
+    firstFig = 1;
+    lastFig = numberOfImgs;
+end
+firstFigName = fns{firstFig};
+lastFigName = fns{lastFig};
+
+% dF/F
+for roi=1:totalNumberOfRois
+% for roi=[1 2 3 5 6 8 11 12 13 14]
+    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_dF'))
+    hold on;
+    for file=firstFig:lastFig
+    % for file=1:numberOfImgs
+        plot(xAxisInSec',s_dF.(fns{file})(:,roi));
+        if analyzeOdorPulse == 1
+            xline(adjustedBaselineInSec);
+            xline(adjustedBaselineInSec+odorDurInSec);
+        end
+    end
+    hold off;
+    axis([0 xmax -1 1])
+    xlabel('Time (s)')
+    ylabel('dF/F')
+end
+
+% z-score
+for roi=1:totalNumberOfRois
+% for roi=[1 2 4]
+    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_zScore'))
+    hold on;
+    for file=firstFig:lastFig
+        plot(xAxisInSec',s_zS.(fns{file})(:,roi));
+        if analyzeOdorPulse == 1
+            xline(adjustedBaselineInSec);
+            xline(adjustedBaselineInSec+odor_dur_in_s);
+        end
+    end
+    plot(xAxisInSec',mean_zS_PerROI(:,roi),'Color','k','LineWidth',1)
+    hold off;
+    axis([0 xmax -ymax ymax])
+    xlabel('Time (s)')
+    ylabel('z-score')
 end
 
 
@@ -375,7 +561,7 @@ end
 % r2 = (y2-y1)/2
 
 % ROIs over max int proj of first img
-fig1 = figure('Name','ROIs over first max int proj');
+fig1 = figure('Name',strcat(firstFigName, '_to_', lastFigName, '_ROIs over first max int proj'));
 ax1 = axes('Parent',fig1);
 imshow(firstMaxIntProj,[],'Parent', ax1)
 hold(ax1,'on');
@@ -392,7 +578,7 @@ end
 hold(ax1,'off');
 
 % ROIs over last frame of last img
-fig2 = figure('Name','ROIs over last frame of last img');
+fig2 = figure('Name',strcat(firstFigName, '_to_', lastFigName, '_ROIs over last frame of last img'));
 ax2 = axes('Parent',fig2);
 % imgToPlot = uint16(imgToAnalyze);
 imshow(imgToAnalyze,[],'Parent', ax2);
@@ -410,25 +596,26 @@ for roiNumber=1:length(rois)
 end
 hold(ax2,'off');
 
-% % ROIs over max int proj of last img
-% % ALERT: I am not adjusting the position of this fig!
-% if exist('lastMaxIntProjFileDir','var')
-%     fig3 = figure('Name','ROIs over last max int proj');
-%     ax3 = axes('Parent',fig3);
-%     imshow(lastMaxIntProj,'Parent', ax3);
-%     hold(ax3,'on');
-%     thetas = linspace(0,2*pi,200);
-%     for roiNumber=1:length(rois)
-%         ellipseR1 = (rois{roiNumber}.vnRectBounds(4) - rois{roiNumber}.vnRectBounds(2))/2;
-%         ellipseR2 = (rois{roiNumber}.vnRectBounds(3) - rois{roiNumber}.vnRectBounds(1))/2;
-%         ellipseA = (rois{roiNumber}.vnRectBounds(4) + rois{roiNumber}.vnRectBounds(2))/2;
-%         ellipseB = (rois{roiNumber}.vnRectBounds(3) + rois{roiNumber}.vnRectBounds(1))/2;
-%         ellipseX = ellipseR1*cos(thetas)+ellipseA;
-%         ellipseY = ellipseR2*sin(thetas)+ellipseB; 
-%         plot(ellipseX,ellipseY,'Parent',ax3);
-%     end
-%     hold(ax3,'off');
-% end
+% ROIs over max int proj of last img
+% ALERT: I am not adjusting the position of this fig!
+if exist('lastMaxIntProjFileDir','var')
+    fig3 = figure('Name','ROIs over last max int proj');
+    ax3 = axes('Parent',fig3);
+    imshow(imadjust(lastMaxIntProj,[0.5 0.65]),'Parent', ax3);
+    hold(ax3,'on');
+    thetas = linspace(0,2*pi,200);
+    for roiNumber=1:length(rois)
+        ellipseR1 = (rois{roiNumber}.vnRectBounds(4) - rois{roiNumber}.vnRectBounds(2))/2;
+        ellipseR2 = (rois{roiNumber}.vnRectBounds(3) - rois{roiNumber}.vnRectBounds(1))/2;
+        ellipseA = (rois{roiNumber}.vnRectBounds(4) + rois{roiNumber}.vnRectBounds(2))/2;
+        ellipseB = (rois{roiNumber}.vnRectBounds(3) + rois{roiNumber}.vnRectBounds(1))/2;
+        ellipseX = ellipseR1*cos(thetas)+ellipseA;
+        ellipseY = ellipseR2*sin(thetas)+ellipseB; 
+        plot(ellipseX,ellipseY,'Parent',ax3,'Color','y');
+        text(ellipseA,ellipseB,num2str(roiNumber),'Parent',ax3,'Color','y');
+    end
+    hold(ax3,'off');
+end
 
 % % plot ROIs as colorful blobs
 % labeledRois = labelmatrix(regions);
@@ -442,56 +629,6 @@ hold(ax2,'off');
 % RGB_sub = label2rgb(L_sub');
 % figure 
 % imshow(RGB_sub) 
-
-
-%% PLOT data in ROIs
-
-% set default firstFig and lastFig boundaries in case user does NOT want a
-% custom subset
-if plotSubset == 0
-    firstFig = 1;
-    lastFig = numberOfImgs;
-end
-firstFigName = fns{firstFig};
-lastFigName = fns{lastFig};
-
-% dF/F
-for roi=1:totalNumberOfRois
-% for roi=[1 2 3 5 6 8 11 12 13 14]
-    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_dF'))
-    hold on;
-    for file=firstFig:lastFig
-    % for file=1:numberOfImgs
-        plot(xAxisInSec',s_dF.(fns{file})(:,roi));
-        if analyzeOdorPulse == 1
-            xline(baselineWindowInSec);
-            xline(baselineWindowInSec+odorDurInSec);
-        end
-    end
-    hold off;
-    axis([0 xmax -5 ymax])
-    xlabel('Time (s)')
-    ylabel('dF/F')
-end
-
-% z-score
-for roi=1:totalNumberOfRois
-% for roi=[1 2 4]
-    figure('Name',strcat(firstFigName, '_to_', lastFigName, '_roi_', num2str(roi), '_zScore'))
-    hold on;
-    for file=firstFig:lastFig
-        plot(xAxisInSec',s_zS.(fns{file})(:,roi));
-        if analyzeOdorPulse == 1
-            xline(baseline_dur_in_s);
-            xline(baseline_dur_in_s+odor_dur_in_s);
-        end
-    end
-    plot(xAxisInSec',mean_zS_PerROI(:,roi),'Color','k','LineWidth',1)
-    hold off;
-    axis([0 xmax -5 ymax])
-    xlabel('Time (s)')
-    ylabel('z-score')
-end
     
 
 %% ARCHIVE - outdated code I'm hoarding
