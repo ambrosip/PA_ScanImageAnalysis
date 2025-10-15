@@ -25,9 +25,11 @@ close all
 
 %% USER INPUT - IMAGE DIR
 
-imgDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)';
-rawImgDir = [];     % use rawImgDir = [] if raw img is not available
-saveDir = fullfile(imgDir,'analysis');
+expDir = '/Users/priscilla/Documents/Local - Moss Lab/20250528/exp3';
+imgDir = fullfile(expDir,'processed','mcor');
+% rawImgDir = [];     % use rawImgDir = [] if raw img is not available
+rawImgDir = fullfile(expDir,'raw');
+saveDir = fullfile(expDir,'analysis');
 
 % acquisition parameters - you need to provide frame rate if you're
 % not providing rawImgDir. This number will get overwritten if you provide
@@ -77,14 +79,14 @@ odor_dataset = '/OdorDelivery';
 
 imgs_file_dir = imgDir;
 
-olfactometer_file_name = dir(fullfile(imgDir, '*.csv')).name;
-olfactometer_file_dir = fullfile(imgDir,olfactometer_file_name);
+olfactometer_file_name = dir(fullfile(expDir, '*.csv')).name;
+olfactometer_file_dir = fullfile(expDir,olfactometer_file_name);
 
-h5_file_name = dir(fullfile(imgDir, '*.h5')).name;
-h5_file_dir = fullfile(imgDir,h5_file_name);
+h5_file_name = dir(fullfile(expDir, '*.h5')).name;
+h5_file_dir = fullfile(expDir,h5_file_name);
 
-roi_file_name = dir(fullfile(imgDir, '*.zip')).name;
-roi_file_dir = fullfile(imgDir,roi_file_name);
+roi_file_name = dir(fullfile(expDir, '*.zip')).name;
+roi_file_dir = fullfile(expDir,roi_file_name);
 
 
 %% PRE-PROCESS - FIND frame rate and number of frames using ScanImage
@@ -230,7 +232,8 @@ end
 % before doing this, drop the last odor_start_ts in case you have a
 % mismatch in the size of odor_start_ts_labeled and acq_list
 if size(odor_start_ts_labeled,1) > size(acq_list,1)
-    odor_start_ts_labeled = odor_start_ts_labeled(1:end-1,:);
+    % odor_start_ts_labeled = odor_start_ts_labeled(1:end-1,:);
+    odor_start_ts_labeled = odor_start_ts_labeled(1:size(acq_list,1),:);
 end
 odor_start_ts_labeled(:,3) = str2num(acq_list);
 

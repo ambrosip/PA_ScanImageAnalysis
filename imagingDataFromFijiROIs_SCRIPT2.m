@@ -39,18 +39,29 @@ analyzeOdorPulse = 1;
 xmax = ceil(img_dur_in_s); % seconds
 ymax = 10; % z-score
 
-% dlight odor1&2 glom 20250305_m0034_00021_mcor
+% jedi2p odor1&2 20250528 exp3
 timingFile = h5_file_dir;
 % imgDir = destination_dir1;
 imgDir = destination_dir2;
-firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor_flatten.tif'; 
-lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor.tif';
+firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250528/exp3/fiji/AVG_20250528_m0047_00089_mcor-1_roi_flat.tif'; 
+lastMaxIntProjFileDir = firstMaxIntProjFileDir;
 roiFileDir = roi_file_dir;
 motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
 plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
-photobleachingWindowInSec = 1;
+photobleachingWindowInSec = 2;
 
 % inputs for other datasets (may be outdated!):
+
+% % dlight odor1&2 glom 20250305_m0034_00021_mcor
+% timingFile = h5_file_dir;
+% % imgDir = destination_dir1;
+% imgDir = destination_dir2;
+% firstMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor_flatten.tif'; 
+% lastMaxIntProjFileDir = '/Users/priscilla/Documents/Local - Moss Lab/20250305_m0034_dlight/exp2 (21+)/extra/AVG_20250305_m0034_00021_mcor.tif';
+% roiFileDir = roi_file_dir;
+% motionCorrectionAcrossFiles = 0;    % no: 0     yes: 1
+% plotSubset = 0;                     % no: 0     yes: 1  ALERT: if yes, need to specify firstFig and lastFig numbers
+% photobleachingWindowInSec = 1;
 
 % % grabda odor1 glom a20250321_m0043_00063+
 % timingFile=h5_file_dir;
